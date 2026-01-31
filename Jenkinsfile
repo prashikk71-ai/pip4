@@ -1,8 +1,11 @@
-if [ "$ENVIRONMENT" = "QA" ]; then
+case "$ENVIRONMENT" in
+  QA|UAT)
     cp target/pip4.war /home/prashik/Downloads/apache-tomcat-11.0.15/webapps
-elif [ "$ENVIRONMENT" = "UAT" ]; then
-    cp target/pip4.war /home/prashik/Downloads/apache-tomcat-11.0.15/webapps
-fi
-
-echo "deployment has been done!"
+    echo "deployment has been done!"
+    ;;
+  *)
+    echo "Unknown environment: $ENVIRONMENT"
+    exit 1
+    ;;
+esac
 
